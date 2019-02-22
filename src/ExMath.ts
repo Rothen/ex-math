@@ -1,16 +1,29 @@
+import { Point } from './Point';
+
 export abstract class ExMath {
-    public static average(averageData: number[]): number;
-    public static average<T, K extends Extract<keyof T, string>>(averageData: T[], propertyOrProperties?: K): number | object;
-    public static average<T, K extends Extract<keyof T, string>>(averageData: T[], propertyOrProperties?: K[]): number | object;
-    // tslint:disable-next-line:max-line-length
-    public static average<T, K extends Extract<keyof T, string>>(averageData: T[] | number[], propertyOrProperties?: K | K[]): number | object {
-            if (typeof propertyOrProperties === 'string') {
-            return this.averageWithProperty(averageData as T[], propertyOrProperties);
-        } else if (typeof propertyOrProperties === 'object') {
-            return this.averageWithMultyProperty(averageData as T[], propertyOrProperties);
-        } else {
-            return this.averageWithoutProperty(averageData as number[]);
+    public static linspaceP(from: number, to: number, n: number = 100): Point[] {
+        const increase = (to - from) / (n - 1);
+        const result: Point[] = [];
+
+        for (let i = from; i <= to; i += increase) {
+            result.push({
+                x: i,
+                y: null
+            });
         }
+
+        return result;
+    }
+
+    public static linspace(from: number, to: number, n: number = 100): number[] {
+        const increase = (to - from) / (n - 1);
+        const result: number[] = [];
+
+        for (let i = from; i <= to; i += increase) {
+            result.push(i);
+        }
+
+        return result;
     }
 
     public static sigma(averageData: number[]): number;
@@ -26,47 +39,18 @@ export abstract class ExMath {
         }
     }
 
-    private static averageWithoutProperty(averageData: number[]): number {
-        const n = averageData.length;
-        let average = 0;
-
-        if (n > 0) {
-            const sigma = this.sigmaWithoutProperty(averageData);
-            average = sigma / n;
+    public static average(averageData: number[]): number;
+    public static average<T, K extends Extract<keyof T, string>>(averageData: T[], propertyOrProperties?: K): number | object;
+    public static average<T, K extends Extract<keyof T, string>>(averageData: T[], propertyOrProperties?: K[]): number | object;
+    // tslint:disable-next-line:max-line-length
+    public static average<T, K extends Extract<keyof T, string>>(averageData: T[] | number[], propertyOrProperties?: K | K[]): number | object {
+            if (typeof propertyOrProperties === 'string') {
+            return this.averageWithProperty(averageData as T[], propertyOrProperties);
+        } else if (typeof propertyOrProperties === 'object') {
+            return this.averageWithMultyProperty(averageData as T[], propertyOrProperties);
+        } else {
+            return this.averageWithoutProperty(averageData as number[]);
         }
-
-        return average;
-    }
-
-    private static averageWithProperty<T, K extends Extract<keyof T, string>>(averageData: T[], property: K): number {
-        const n = averageData.length;
-        let average = 0;
-
-        if (n > 0) {
-            const sigma = this.sigmaWithProperty(averageData, property);
-            average = sigma / n;
-        }
-
-        return average;
-    }
-
-    private static averageWithMultyProperty<T, K extends Extract<keyof T, string>>(averageData: T[], properties: K[]): object {
-        const n = averageData.length;
-        let averageObj = {};
-
-        for (const property of properties) {
-            averageObj[property as string] = 0;
-        }
-
-
-        if (n > 0) {
-            const sigma = this.sigmaWithMultyProperty(averageData, properties);
-            for (const property of properties) {
-                averageObj[property as string] = sigma[property as string] / n;
-            }
-        }
-
-        return averageObj;
     }
 
     private static sigmaWithoutProperty(sigmaData: number[]): number {
@@ -102,5 +86,40 @@ export abstract class ExMath {
         }
 
         return sumObj;
+    }
+
+    private static averageWithoutProperty(averageData: number[]): number {
+        const n = averageData.length;
+        let average = this.sigmaWithoutProperty(averageData);
+
+        if (n > 0) {
+            average /= n;
+        }
+
+        return average;
+    }
+
+    private static averageWithProperty<T, K extends Extract<keyof T, string>>(averageData: T[], property: K): number {
+        const n = averageData.length;
+        let average = this.sigmaWithProperty(averageData, property);
+
+        if (n > 0) {
+            average /= n;
+        }
+
+        return average;
+    }
+
+    private static averageWithMultyProperty<T, K extends Extract<keyof T, string>>(averageData: T[], properties: K[]): object {
+        const n = averageData.length;
+        const averageObj = this.sigmaWithMultyProperty(averageData, properties);
+
+        if (n > 0) {
+            for (const property of properties) {
+                averageObj[property as string] /= n;
+            }
+        }
+
+        return averageObj;
     }
 }
