@@ -1,7 +1,7 @@
 import { Point } from './Point';
 import { ExMath } from './ExMath';
 
-export class Cluster {
+export class Set {
     private points: Point[];
     private lastCenter: Point = new Point(0, 0);
     private center: Point;

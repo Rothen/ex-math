@@ -3,6 +3,7 @@ import { Point } from '../src';
 
 describe('Point', () => {
     let point = new Point(0, 0);
+
     beforeEach(() => {
     });
 

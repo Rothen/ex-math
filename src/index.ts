@@ -1,4 +1,4 @@
-export * from './KMeans';
 export * from './Point';
-export * from './Cluster';
+export * from './Set';
 export * from './ExMath';
+export * from './ExStatistics';
