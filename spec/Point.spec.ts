@@ -2,12 +2,15 @@ import { expect } from 'chai';
 import { Point } from '../src';
 
 describe('Point', () => {
-    let point = new Point(0, 0);
+    let point: Point = {
+        x: 0,
+        y: 0
+    };
 
     beforeEach(() => {
     });
 
     it('should be created', () => {
-        expect(Point).to.be.ok;
+        expect(point).to.be.ok;
     });
 });

@@ -3,7 +3,7 @@ import { ExMath } from './ExMath';
 
 export class Set {
     private points: Point[];
-    private lastCenter: Point = new Point(0, 0);
+    private lastCenter: Point = { x: 0, y: 0 };
     private center: Point;
 
     constructor() {
@@ -42,7 +42,10 @@ export class Set {
     public setRandomCenter(minX: number, minY: number, maxX: number, maxY: number): Point {
         const x = (Math.random() * maxX) + minX;
         const y = (Math.random() * maxY) + minY;
-        const center = new Point(x, y);
+        const center = {
+            x: x,
+            y: y
+        };
 
         this.center = center;
         return center;
@@ -56,7 +59,10 @@ export class Set {
         let average = ExMath.average(this.points, ['x', 'y']) as {x: number, y: number};
 
         this.lastCenter = this.center;
-        this.center = new Point(average.x, average.y);
+        this.center = {
+            x: average.x,
+            y: average.y
+        };
 
         return this.center;
     }
