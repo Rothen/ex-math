@@ -26,6 +26,16 @@ export abstract class ExMath {
         return result;
     }
 
+    public static spacline(from: number, to: number, h: number = 0.1): number[] {
+        const result: number[] = [];
+
+        for (let i = from; i <= to; i += h) {
+            result.push(i);
+        }
+
+        return result;
+    }
+
     public static sigma(averageData: number[]): number;
     public static sigma<T, K extends Extract<keyof T, string>>(averageData: T[], propertyOrProperties?: K): number | object;
     public static sigma<T, K extends Extract<keyof T, string>>(averageData: T[], propertyOrProperties?: K[]): number | object;
