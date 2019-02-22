@@ -1,19 +1,19 @@
 import { expect } from 'chai';
-import { ExStatistics } from '../src';
+import { ExStat } from '../src';
 
-describe('ExStatistics', () => {
+describe('ExStat', () => {
     beforeEach(() => {
     });
 
     it('should be created', () => {
-        expect(ExStatistics).to.be.ok;
+        expect(ExStat).to.be.ok;
     });
 
     // Median calculations
 
     it('should calculate median correctly', () => {
         const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        expect(ExStatistics.median(data)).to.equal(5.5);
+        expect(ExStat.median(data)).to.equal(5.5);
     });
 
     it('should calculate median with property correctly', () => {
@@ -29,7 +29,7 @@ describe('ExStatistics', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStatistics.median(data, 'x')).to.equal(5.5);
+        expect(ExStat.median(data, 'x')).to.equal(5.5);
     });
 
     it('should calculate median with properties correctly', () => {
@@ -45,7 +45,7 @@ describe('ExStatistics', () => {
             {x: 9, y: 19},
             {x: 10, y: 20}
         ];
-        expect(ExStatistics.median(data, ['x', 'y'])).to.deep.equal({
+        expect(ExStat.median(data, ['x', 'y'])).to.deep.equal({
             x: 5.5,
             y: 15.5
         });
@@ -55,7 +55,7 @@ describe('ExStatistics', () => {
 
     it('should calculate the first quartile correctly', () => {
         const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        expect(ExStatistics.quartile1(data)).to.equal(3);
+        expect(ExStat.quartile1(data)).to.equal(3);
     });
 
     it('should calculate the first quartile with property correctly', () => {
@@ -71,7 +71,7 @@ describe('ExStatistics', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStatistics.quartile1(data, 'x')).to.equal(3);
+        expect(ExStat.quartile1(data, 'x')).to.equal(3);
     });
 
     it('should calculate the first quartile with properties correctly', () => {
@@ -87,7 +87,7 @@ describe('ExStatistics', () => {
             {x: 9, y: 19},
             {x: 10, y: 20}
         ];
-        expect(ExStatistics.quartile1(data, ['x', 'y'])).to.deep.equal({
+        expect(ExStat.quartile1(data, ['x', 'y'])).to.deep.equal({
             x: 3,
             y: 13
         });
@@ -97,7 +97,7 @@ describe('ExStatistics', () => {
 
     it('should calculate the second quartile correctly', () => {
         const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        expect(ExStatistics.quartile2(data)).to.equal(5.5);
+        expect(ExStat.quartile2(data)).to.equal(5.5);
     });
 
     it('should calculate the second quartile with property correctly', () => {
@@ -113,7 +113,7 @@ describe('ExStatistics', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStatistics.quartile2(data, 'x')).to.equal(5.5);
+        expect(ExStat.quartile2(data, 'x')).to.equal(5.5);
     });
 
     it('should calculate the second quartile with properties correctly', () => {
@@ -129,7 +129,7 @@ describe('ExStatistics', () => {
             {x: 9, y: 19},
             {x: 10, y: 20}
         ];
-        expect(ExStatistics.quartile2(data, ['x', 'y'])).to.deep.equal({
+        expect(ExStat.quartile2(data, ['x', 'y'])).to.deep.equal({
             x: 5.5,
             y: 15.5
         });
@@ -139,7 +139,7 @@ describe('ExStatistics', () => {
 
     it('should calculate the third quartile correctly', () => {
         const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        expect(ExStatistics.quartile3(data)).to.equal(8);
+        expect(ExStat.quartile3(data)).to.equal(8);
     });
 
     it('should calculate the third quartile with property correctly', () => {
@@ -155,7 +155,7 @@ describe('ExStatistics', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStatistics.quartile3(data, 'x')).to.equal(8);
+        expect(ExStat.quartile3(data, 'x')).to.equal(8);
     });
 
     it('should calculate the third quartile with properties correctly', () => {
@@ -171,7 +171,7 @@ describe('ExStatistics', () => {
             {x: 9, y: 19},
             {x: 10, y: 20}
         ];
-        expect(ExStatistics.quartile3(data, ['x', 'y'])).to.deep.equal({
+        expect(ExStat.quartile3(data, ['x', 'y'])).to.deep.equal({
             x: 8,
             y: 18
         });
@@ -181,14 +181,14 @@ describe('ExStatistics', () => {
 
     it('should calculate a percentile correctly', () => {
         const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        expect(ExStatistics.percentile(data, 60)).to.equal(6.5);
-        expect(ExStatistics.percentile(data, 65)).to.equal(7);
+        expect(ExStat.percentile(data, 60)).to.equal(6.5);
+        expect(ExStat.percentile(data, 65)).to.equal(7);
     });
 
     it('should calculate a percentile without property correctly', () => {
         const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        expect(ExStatistics['percentileWithoutProperty'](data, 60)).to.equal(6.5);
-        expect(ExStatistics['percentileWithoutProperty'](data, 65)).to.equal(7);
+        expect(ExStat['percentileWithoutProperty'](data, 60)).to.equal(6.5);
+        expect(ExStat['percentileWithoutProperty'](data, 65)).to.equal(7);
     });
 
     it('should calculate a percentile with property correctly', () => {
@@ -204,8 +204,8 @@ describe('ExStatistics', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStatistics['percentileWithProperty'](data, 'x', 60)).to.equal(6.5);
-        expect(ExStatistics['percentileWithProperty'](data, 'x', 65)).to.equal(7);
+        expect(ExStat['percentileWithProperty'](data, 'x', 60)).to.equal(6.5);
+        expect(ExStat['percentileWithProperty'](data, 'x', 65)).to.equal(7);
     });
 
     it('should calculate a percentile with properties correctly', () => {
@@ -221,11 +221,11 @@ describe('ExStatistics', () => {
             {x: 9, y: 19},
             {x: 10, y: 20}
         ];
-        expect(ExStatistics['percentileWithMultyProperty'](data, ['x', 'y'], 60)).to.deep.equal({
+        expect(ExStat['percentileWithMultyProperty'](data, ['x', 'y'], 60)).to.deep.equal({
             x: 6.5,
             y: 16.5
         });
-        expect(ExStatistics['percentileWithMultyProperty'](data, ['x', 'y'], 65)).to.deep.equal({
+        expect(ExStat['percentileWithMultyProperty'](data, ['x', 'y'], 65)).to.deep.equal({
             x: 7,
             y: 17
         });

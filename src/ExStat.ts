@@ -1,4 +1,4 @@
-export abstract class ExStatistics {
+export abstract class ExStat {
 
     public static median(medianData: number[]): number;
     public static median<T, K extends Extract<keyof T, string>>(medianData: T[], propertyOrProperties?: K): number | object;
