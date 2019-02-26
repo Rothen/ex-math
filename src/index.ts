@@ -1,11 +1,10 @@
-import { ExNume } from './ExNume';
-import { Point } from './Point';
-import { ExMath } from './ExMath';
-
 export * from './Point';
 export * from './Set';
 export * from './ExMath';
 export * from './ExStat';
+export * from './ExNume';
+export * from './Matrix';
+export * from './Vector';
 
 /*const x: number[] = ExMath.linspace(1, 100);
 const y: number[] = [];
@@ -37,11 +36,29 @@ const n = 10 / h;
 console.log(ExNume.mittelpunkt(fn, a, b, n, y0));
 */
 
-console.log(ExMath.linspace(1, 10, 1).length);
+/*console.log(ExMath.linspace(1, 10, 1).length);
 console.log(ExMath.linspace(1, 10, 10).length);
 console.log(ExMath.linspace(1, 10, 50).length);
 console.log(ExMath.linspace(1, 10, 100).length);
 console.log(ExMath.linspace(1, 10, 1)[0]);
 console.log(ExMath.linspace(1, 10, 10)[9]);
 console.log(ExMath.linspace(1, 10, 50)[48]);
-console.log(ExMath.linspace(1, 10, 100)[98]);
+console.log(ExMath.linspace(1, 10, 100)[98]);*/
+
+/*const m = new Matrix([[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12]]);
+
+console.log(m.data);
+m.transpose();
+console.log(m.data);
+
+const v = new Vector([9, 8, 7, 6, 5, 4]);
+
+console.log(v.data);
+console.log(v.data);*/
+
+/*const m1 = new Matrix([[9, 10]]);
+const m2 = new Matrix([[1, 2, 5], [3, 4, 6]]);
+
+console.log(m1.data);
+console.log(m2.data);
+console.log(multiply(m1, m2).data);*/
