@@ -48,21 +48,21 @@ export abstract class ExMath {
     }
 
     public static sigma(sigmaData: number[]): number;
-    public static sigma<T, K extends Extract<keyof T, string>>(sigmaData: T[], propertyOrProperties?: K): number | object;
-    public static sigma<T, K extends Extract<keyof T, string>>(sigmaData: T[] | number[], propertyOrProperties?: K | K[]): number | object {
-        if (typeof propertyOrProperties === 'object') {
-            return this.sigmaWithMultyProperty(sigmaData as T[], propertyOrProperties);
+    public static sigma<T, K extends Extract<keyof T, string>>(sigmaData: T[], properties?: K[]): number | object;
+    public static sigma<T, K extends Extract<keyof T, string>>(sigmaData: T[] | number[], properties?: K[]): number | object {
+        if (typeof properties === 'object') {
+            return this.sigmaWithMultyProperty(sigmaData as T[], properties);
         } else {
             return this.sigmaWithoutProperty(sigmaData as number[]);
         }
     }
 
     public static average(averageData: number[]): number;
-    public static average<T, K extends Extract<keyof T, string>>(averageData: T[], propertyOrProperties?: K): number | object;
+    public static average<T, K extends Extract<keyof T, string>>(averageData: T[], properties?: K[]): number | object;
     // tslint:disable-next-line:max-line-length
-    public static average<T, K extends Extract<keyof T, string>>(averageData: T[] | number[], propertyOrProperties?: K | K[]): number | object {
-        if (typeof propertyOrProperties === 'object') {
-            return this.averageWithMultyProperty(averageData as T[], propertyOrProperties);
+    public static average<T, K extends Extract<keyof T, string>>(averageData: T[] | number[], properties?: K[]): number | object {
+        if (typeof properties === 'object') {
+            return this.averageWithMultyProperty(averageData as T[], properties);
         } else {
             return this.averageWithoutProperty(averageData as number[]);
         }
