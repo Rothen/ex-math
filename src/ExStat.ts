@@ -91,26 +91,25 @@ export abstract class ExStat {
     }
 
     // tslint:disable-next-line:max-line-length
-    private static percentileWithMultyProperty<T, K extends Extract<keyof T, string>>(percentileData: T[], properties: K[], q: number): object {
-        const n = percentileData.length;
-        const index = (n * q / 100) - 1;
-        let percentile = {};
+    private static percentileWithMultyProperty<T, K extends Extract<keyof T, string>>(percentileData: T[], properties: K[], percentile: number): object {
+        const dataCount = percentileData.length;
+        const index = (dataCount * percentile / 100) - 1;
+        const result = {};
 
-        if (n > 0) {
-            for (const property of properties) {
-                const propertyName: string = property;
-                percentile[propertyName] = 0;
+        for (const property of properties as string[]) {
+            result[property] = 0;
 
-                if (n > 0) {
-                    if (index % 1 === 0) {
-                        percentile[propertyName] = (percentileData[index][propertyName] + percentileData[index + 1][propertyName]) / 2;
-                    } else {
-                        percentile[propertyName] = percentileData[Math.ceil(index)][propertyName];
-                    }
-                }
+            if (dataCount <= 0) {
+                continue;
+            }
+
+            if (index % 1 === 0) {
+                result[property] = (percentileData[index][property] + percentileData[index + 1][property]) / 2;
+            } else {
+                result[property] = percentileData[Math.ceil(index)][property];
             }
         }
 
-        return percentile;
+        return result;
     }
 }

@@ -70,21 +70,21 @@ export class Matrix {
     }
 }
 
-export function multiply(m1: Matrix, m2: Matrix) {
-    if (m1.columns !== m2.rows) {
+export function multiply(matrixA: Matrix, matrixB: Matrix) {
+    if (matrixA.columns !== matrixB.rows) {
         throw new Error(`Dimensions must agree`);
     }
 
-    let result: number[][] = [];
+    const result: number[][] = [];
 
-    for (let r = 0; r < m1.rows; ++r) {
-        result[r] = [];
+    for (let rowIndex = 0; rowIndex < matrixA.rows; ++rowIndex) {
+        result[rowIndex] = [];
 
-        for (let c = 0; c < m2.columns; ++c) {
-            result[r][c] = 0;
+        for (let columnIndex = 0; columnIndex < matrixB.columns; ++columnIndex) {
+            result[rowIndex][columnIndex] = 0;
 
-            for (let i = 0; i < m1.columns; ++i) {
-                result[r][c] += m1.data[r][i] * m2.data[i][c];
+            for (let index = 0; index < matrixA.columns; ++index) {
+                result[rowIndex][columnIndex] += matrixA.data[rowIndex][index] * matrixB.data[index][columnIndex];
             }
         }
     }
