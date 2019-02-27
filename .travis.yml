@@ -3,13 +3,14 @@ node_js :
  - "10"
 install:
  - npm install
+script:
+ - npm run build
+ - npm run cover
 deploy:
   provider: npm
   email: "alkocats.info@gmail.com"
   api_key: $NPM_AUTH_TOKEN
+  tag: next
   on:
     tags: true
-script:
- - npm run build
- - npm run cover
 after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
