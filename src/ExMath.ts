@@ -130,4 +130,16 @@ export abstract class ExMath {
 
         return averageObj;
     }
+
+    public static isWholeNumber(value: number) {
+        return value % 1 === 0;
+    }
+
+    public static isInN(value: number) {
+        return value > 0 && this.isWholeNumber(value);
+    }
+
+    public static isInN0(value: number) {
+        return value >= 0 && this.isWholeNumber(value);
+    }
 }
