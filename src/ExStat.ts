@@ -1,4 +1,4 @@
-import { ExMath } from "./ExMath";
+import { ExMath } from './ExMath';
 
 export abstract class ExStat {
     public static median(medianData: number[]): number;
