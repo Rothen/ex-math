@@ -1,8 +1,15 @@
 language : node_js
 node_js :
- - stable
+ - "10"
 install:
  - npm install
+deploy:
+  provider: npm
+  email: "alkocats.info@gmail.com"
+  api_key: $NPM_AUTH_TOKEN
+  on:
+    tags: true
 script:
- - npm run cover 
+ - npm run build
+ - npm run cover
 after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
