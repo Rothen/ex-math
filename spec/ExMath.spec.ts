@@ -23,7 +23,7 @@ describe('ExMath', () => {
 
     it('should calculate average with property correctly', () => {
         const data = [{x: 1}, {x: 2}, {x: 3}, {x: 4}, {x: 5}, {x: 6}, {x: 7}, {x: 8}, {x: 9}, {x: 10}];
-        expect(ExMath['averageWithProperty'](data, 'x')).to.equal(5.5);
+        expect(ExMath['averageWithProperties'](data, ['x'])).to.deep.equal({ x: 5.5 });
     });
 
     it('should calculate average with properties correctly', () => {
@@ -39,7 +39,7 @@ describe('ExMath', () => {
             {x: 9, y: 19},
             {x: 10, y: 20}
         ];
-        expect(ExMath['averageWithMultyProperty'](data, ['x', 'y'])).to.deep.equal({
+        expect(ExMath['averageWithProperties'](data, ['x', 'y'])).to.deep.equal({
             x: 5.5,
             y: 15.5
         });
@@ -70,7 +70,7 @@ describe('ExMath', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExMath['sigmaWithProperty'](data, 'x')).to.equal(55);
+        expect(ExMath['sigmaWithProperties'](data, ['x'])).to.deep.equal({x: 55 });
     });
 
     it('should calculate sigma with properties correctly', () => {
@@ -86,7 +86,7 @@ describe('ExMath', () => {
             {x: 9, y: 19},
             {x: 10, y: 20}
         ];
-        expect(ExMath['sigmaWithMultyProperty'](data, ['x', 'y'])).to.deep.equal({
+        expect(ExMath['sigmaWithProperties'](data, ['x', 'y'])).to.deep.equal({
             x: 55,
             y: 155
         });
