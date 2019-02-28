@@ -2,9 +2,9 @@ import { ExMath } from './ExMath';
 
 export abstract class ExStat {
     public static median(medianData: number[]): number;
-    public static median<T, K extends keyof T>(medianData: T[], properties?: K[]): { [R in keyof T]?: T[K]; };
+    public static median<T, K extends keyof T>(medianData: T[], properties?: K[]): { [P in K]?: T[P] };
     // tslint:disable-next-line:max-line-length
-    public static median<T, K extends keyof T>(medianData: T[] | number[], properties?: K | K[]): number | { [R in keyof T]?: T[K]; } {
+    public static median<T, K extends keyof T>(medianData: T[] | number[], properties?: K | K[]): number | { [P in K]?: T[P] } {
         let propertiesOrQ: any = properties;
         if (!propertiesOrQ) {
             propertiesOrQ = 50;
@@ -13,9 +13,9 @@ export abstract class ExStat {
     }
 
     public static quartile1(quartileData: number[]): number;
-    public static quartile1<T, K extends keyof T>(quartileData: T[], properties?: K[]): { [R in keyof T]?: T[K]; };
+    public static quartile1<T, K extends keyof T>(quartileData: T[], properties?: K[]): { [P in K]?: T[P] };
     // tslint:disable-next-line:max-line-length
-    public static quartile1<T, K extends keyof T>(quartileData: T[] | number[], properties?: K | K[]): number | { [R in keyof T]?: T[K]; } {
+    public static quartile1<T, K extends keyof T>(quartileData: T[] | number[], properties?: K | K[]): number | { [P in K]?: T[P] } {
         let propertiesOrQ: any = properties;
         if (!propertiesOrQ) {
             propertiesOrQ = 25;
@@ -24,16 +24,16 @@ export abstract class ExStat {
     }
 
     public static quartile2(quartileData: number[]): number;
-    public static quartile2<T, K extends keyof T>(quartileData: T[], properties?: K[]): { [R in keyof T]?: T[K]; };
+    public static quartile2<T, K extends keyof T>(quartileData: T[], properties?: K[]): { [P in K]?: T[P] };
     // tslint:disable-next-line:max-line-length
-    public static quartile2<T, K extends keyof T>(quartileData: T[] | number[], properties?: K | K[]): number | { [R in keyof T]?: T[K]; } {
+    public static quartile2<T, K extends keyof T>(quartileData: T[] | number[], properties?: K | K[]): number | { [P in K]?: T[P] } {
         return this.median(quartileData as any, properties as any);
     }
 
     public static quartile3(quartileData: number[]): number;
-    public static quartile3<T, K extends keyof T>(quartileData: T[], properties?: K[]): { [R in keyof T]?: T[K]; };
+    public static quartile3<T, K extends keyof T>(quartileData: T[], properties?: K[]): { [P in K]?: T[P] };
     // tslint:disable-next-line:max-line-length
-    public static quartile3<T, K extends keyof T>(quartileData: T[] | number[], properties?: K | K[]): number | { [R in keyof T]?: T[K]; } {
+    public static quartile3<T, K extends keyof T>(quartileData: T[] | number[], properties?: K | K[]): number | { [P in K]?: T[P] } {
         let propertiesOrQ: any = properties;
         if (!propertiesOrQ) {
             propertiesOrQ = 75;
@@ -43,9 +43,9 @@ export abstract class ExStat {
 
     public static percentile(percentileData: number[], propertiesOrQ: number): number;
     // tslint:disable-next-line:max-line-length
-    public static percentile<T, K extends keyof T>(percentileData: T[], propertiesOrQ?: K[], q?: number): { [R in keyof T]?: T[K]; };
+    public static percentile<T, K extends keyof T>(percentileData: T[], propertiesOrQ?: K[], q?: number): { [P in K]?: T[P] };
     // tslint:disable-next-line:max-line-length
-    public static percentile<T, K extends keyof T>(percentileData: T[] | number[], propertiesOrQ?: K[] | number, q?: number): number | { [R in keyof T]?: T[K]; } {
+    public static percentile<T, K extends keyof T>(percentileData: T[] | number[], propertiesOrQ?: K[] | number, q?: number): number | { [P in K]?: T[P] } {
         if (typeof propertiesOrQ === 'object') {
             return this.percentileWithProperties(percentileData as T[], propertiesOrQ, q);
         } else {
@@ -70,7 +70,7 @@ export abstract class ExStat {
     }
 
     // tslint:disable-next-line:max-line-length
-    private static percentileWithProperties<T, K extends keyof T>(percentileData: T[], properties: K[], percentile: number): { [R in keyof T]?: T[K]; } {
+    private static percentileWithProperties<T, K extends keyof T>(percentileData: T[], properties: K[], percentile: number): { [P in K]?: T[P] } {
         const result = {};
         const dataCount = percentileData.length;
         const index = (dataCount * percentile / 100) - 1;

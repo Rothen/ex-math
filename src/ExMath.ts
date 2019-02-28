@@ -38,9 +38,9 @@ export abstract class ExMath {
 
     public static round(roundData: number, precision: number): number;
     // tslint:disable-next-line:max-line-length
-    public static round<T, K extends keyof T>(roundData: T, precision: number, properties?: K[]): { [R in keyof T]?: T[K]; };
+    public static round<T, K extends keyof T>(roundData: T, precision: number, properties?: K[]): { [P in K]?: T[P] };
     // tslint:disable-next-line:max-line-length
-    public static round<T, K extends keyof T>(roundData: T | number, precision: number = 0, properties?: K[]): number | { [R in keyof T]?: T[K]; } {
+    public static round<T, K extends keyof T>(roundData: T | number, precision: number = 0, properties?: K[]): number | { [P in K]?: T[P] } {
         if (typeof properties === 'object') {
             return this.roundWithProperties(roundData as T, precision, properties);
        } else {
@@ -49,8 +49,8 @@ export abstract class ExMath {
     }
 
     public static sigma(sigmaData: number[]): number;
-    public static sigma<T, K extends keyof T>(sigmaData: T[], properties?: keyof T[]): { [R in keyof T]?: T[K]; };
-    public static sigma<T, K extends keyof T>(sigmaData: T[] | number[], properties?: keyof T[]): number | { [R in keyof T]?: T[K]; } {
+    public static sigma<T, K extends keyof T>(sigmaData: T[], properties?: K[]): { [P in K]?: T[P] };
+    public static sigma<T, K extends keyof T>(sigmaData: T[] | number[], properties?: K[]): number | { [P in K]?: T[P] } {
         if (typeof properties === 'object') {
             return this.sigmaWithProperties(sigmaData as T[], properties);
         } else {
@@ -59,9 +59,9 @@ export abstract class ExMath {
     }
 
     public static average(averageData: number[]): number;
-    public static average<T, K extends keyof T>(averageData: T[], propertyOrProperties?: K[]): { [R in keyof T]?: T[K]; };
+    public static average<T, K extends keyof T>(averageData: T[], propertyOrProperties?: K[]): { [P in K]?: T[P] };
     // tslint:disable-next-line:max-line-length
-    public static average<T, K extends keyof T>(averageData: T[] | number[], propertyOrProperties?: K[]): number | { [R in keyof T]?: T[K]; } {
+    public static average<T, K extends keyof T>(averageData: T[] | number[], propertyOrProperties?: K[]): number | { [P in K]?: T[P] } {
         if (typeof propertyOrProperties === 'object') {
             return this.averageWithProperties(averageData as T[], propertyOrProperties);
         } else {
@@ -74,7 +74,7 @@ export abstract class ExMath {
     }
 
     // tslint:disable-next-line:max-line-length
-    private static roundWithProperties<T, K extends keyof T>(roundData: T, precision: number, properties: K[]): { [R in keyof T]?: T[K]; } {
+    private static roundWithProperties<T, K extends keyof T>(roundData: T, precision: number, properties: K[]): { [P in K]?: T[P] } {
         let roundObj = {};
         for (const property of properties) {
             roundObj[property as string] = this.roundWithoutProperties(roundData[property as string], precision);
@@ -93,7 +93,7 @@ export abstract class ExMath {
         return sum;
     }
 
-    private static sigmaWithProperties<T, K extends keyof T>(sigmaData: T[], properties: K[]): { [R in keyof T]?: T[K]; } {
+    private static sigmaWithProperties<T, K extends keyof T>(sigmaData: T[], properties: K[]): { [P in K]?: T[P] } {
         let sumObj = {};
         for (const property of properties) {
             sumObj[property as string] = 0;

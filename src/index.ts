@@ -10,6 +10,7 @@ export * from './Vector';
 
 const result = ExMath.sigma([1, 2, 3, 4]);
 const resultObj = ExMath.sigma([{ x: 1 }, { x: 2 }, { x: 3 }], ['x']);
+const resultObj2 = ExMath.sigma([{ x: 1, y: 5 }, { x: 2 }, { x: 3 }], ['x']);
 
 /*const x: number[] = ExMath.linspace(1, 100);
 const y: number[] = [];
