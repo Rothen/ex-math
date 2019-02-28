@@ -37,9 +37,10 @@ export abstract class ExMath {
     }
 
     public static round(roundData: number, precision: number): number;
-    public static round<T, K extends Extract<keyof T, string>>(roundData: T, precision: number): number | object;
     // tslint:disable-next-line:max-line-length
-    public static round<T, K extends Extract<keyof T, string>>(roundData: T | number, precision: number = 0, properties?: K[]): number | object {
+    public static round<T, K extends keyof T>(roundData: T, precision: number, properties?: K[]): { [R in keyof T]?: T[K]; };
+    // tslint:disable-next-line:max-line-length
+    public static round<T, K extends keyof T>(roundData: T | number, precision: number = 0, properties?: K[]): number | { [R in keyof T]?: T[K]; } {
         if (typeof properties === 'object') {
             return this.roundWithProperties(roundData as T, precision, properties);
        } else {
@@ -48,19 +49,19 @@ export abstract class ExMath {
     }
 
     public static sigma(sigmaData: number[]): number;
-    public static sigma<T, K extends Extract<keyof T, string>>(sigmaData: T[], propertyOrProperties?: K): number | object;
-    public static sigma<T, K extends Extract<keyof T, string>>(sigmaData: T[] | number[], propertyOrProperties?: K | K[]): number | object {
-        if (typeof propertyOrProperties === 'object') {
-            return this.sigmaWithProperties(sigmaData as T[], propertyOrProperties);
+    public static sigma<T, K extends keyof T>(sigmaData: T[], properties?: keyof T[]): { [R in keyof T]?: T[K]; };
+    public static sigma<T, K extends keyof T>(sigmaData: T[] | number[], properties?: keyof T[]): number | { [R in keyof T]?: T[K]; } {
+        if (typeof properties === 'object') {
+            return this.sigmaWithProperties(sigmaData as T[], properties);
         } else {
             return this.sigmaWithoutProperty(sigmaData as number[]);
         }
     }
 
     public static average(averageData: number[]): number;
-    public static average<T, K extends Extract<keyof T, string>>(averageData: T[], propertyOrProperties?: K[]): number | object;
+    public static average<T, K extends keyof T>(averageData: T[], propertyOrProperties?: K[]): { [R in keyof T]?: T[K]; };
     // tslint:disable-next-line:max-line-length
-    public static average<T, K extends Extract<keyof T, string>>(averageData: T[] | number[], propertyOrProperties?: K[]): number | object {
+    public static average<T, K extends keyof T>(averageData: T[] | number[], propertyOrProperties?: K[]): number | { [R in keyof T]?: T[K]; } {
         if (typeof propertyOrProperties === 'object') {
             return this.averageWithProperties(averageData as T[], propertyOrProperties);
         } else {
@@ -73,8 +74,8 @@ export abstract class ExMath {
     }
 
     // tslint:disable-next-line:max-line-length
-    private static roundWithProperties<T, K extends Extract<keyof T, string>>(roundData: T, precision: number, properties: K[]): object {
-        let roundObj = [];
+    private static roundWithProperties<T, K extends keyof T>(roundData: T, precision: number, properties: K[]): { [R in keyof T]?: T[K]; } {
+        let roundObj = {};
         for (const property of properties) {
             roundObj[property as string] = this.roundWithoutProperties(roundData[property as string], precision);
         }
@@ -92,7 +93,7 @@ export abstract class ExMath {
         return sum;
     }
 
-    private static sigmaWithProperties<T, K extends Extract<keyof T, string>>(sigmaData: T[], properties: K[]): object {
+    private static sigmaWithProperties<T, K extends keyof T>(sigmaData: T[], properties: K[]): { [R in keyof T]?: T[K]; } {
         let sumObj = {};
         for (const property of properties) {
             sumObj[property as string] = 0;
@@ -118,7 +119,7 @@ export abstract class ExMath {
         return average;
     }
 
-    private static averageWithProperties<T, K extends Extract<keyof T, string>>(averageData: T[], properties: K[]): object {
+    private static averageWithProperties<T, K extends keyof T>(averageData: T[], properties: K[]): object {
         const n = averageData.length;
         const averageObj = this.sigmaWithProperties(averageData, properties);
 

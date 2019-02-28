@@ -29,7 +29,7 @@ describe('ExStat', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStat.median(data, 'x')).to.equal(5.5);
+        expect(ExStat.median(data, ['x'])).to.deep.equal({ x: 5.5 });
     });
 
     it('should calculate median with properties correctly', () => {
@@ -71,7 +71,7 @@ describe('ExStat', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStat.quartile1(data, 'x')).to.equal(3);
+        expect(ExStat.quartile1(data, ['x'])).to.deep.equal({ x: 3 });
     });
 
     it('should calculate the first quartile with properties correctly', () => {
@@ -113,7 +113,7 @@ describe('ExStat', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStat.quartile2(data, 'x')).to.equal(5.5);
+        expect(ExStat.quartile2(data, ['x'])).to.deep.equal({ x: 5.5 });
     });
 
     it('should calculate the second quartile with properties correctly', () => {
@@ -155,7 +155,7 @@ describe('ExStat', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStat.quartile3(data, 'x')).to.equal(8);
+        expect(ExStat.quartile3(data, ['x'])).to.deep.equal({ 'x': 8 });
     });
 
     it('should calculate the third quartile with properties correctly', () => {
@@ -191,7 +191,7 @@ describe('ExStat', () => {
         expect(ExStat['percentileWithoutProperty'](data, 65)).to.equal(7);
     });
 
-    it('should calculate a percentile with property correctly', () => {
+    it('should calculate a percentile with one property correctly', () => {
         const data = [
             {x: 1},
             {x: 2},
@@ -204,8 +204,8 @@ describe('ExStat', () => {
             {x: 9},
             {x: 10}
         ];
-        expect(ExStat['percentileWithProperty'](data, 'x', 60)).to.equal(6.5);
-        expect(ExStat['percentileWithProperty'](data, 'x', 65)).to.equal(7);
+        expect(ExStat['percentileWithProperties'](data, ['x'], 60)).to.deep.equal({ x: 6.5 });
+        expect(ExStat['percentileWithProperties'](data, ['x'], 65)).to.deep.equal({ x: 7 });
     });
 
     it('should calculate a percentile with properties correctly', () => {
@@ -221,11 +221,11 @@ describe('ExStat', () => {
             {x: 9, y: 19},
             {x: 10, y: 20}
         ];
-        expect(ExStat['percentileWithMultyProperty'](data, ['x', 'y'], 60)).to.deep.equal({
+        expect(ExStat['percentileWithProperties'](data, ['x', 'y'], 60)).to.deep.equal({
             x: 6.5,
             y: 16.5
         });
-        expect(ExStat['percentileWithMultyProperty'](data, ['x', 'y'], 65)).to.deep.equal({
+        expect(ExStat['percentileWithProperties'](data, ['x', 'y'], 65)).to.deep.equal({
             x: 7,
             y: 17
         });
@@ -237,19 +237,19 @@ describe('ExStat', () => {
         expect(ExStat['percentileWithoutProperty'](data, 65)).to.equal(0);
     });
 
-    it('should calculate percentile with property with an empty dataSet correctly', () => {
+    it('should calculate percentile with one property with an empty dataSet correctly', () => {
         const data = [];
-        expect(ExStat['percentileWithProperty'](data, 'x', 60)).to.equal(0);
-        expect(ExStat['percentileWithProperty'](data, 'x', 65)).to.equal(0);
+        expect(ExStat['percentileWithProperties'](data, ['x'], 60)).to.deep.equal({ x: 0 });
+        expect(ExStat['percentileWithProperties'](data, ['x'], 65)).to.deep.equal({ x: 0 });
     });
 
     it('should calculate percentile with properties with an empty dataSet correctly', () => {
         const data = [];
-        expect(ExStat['percentileWithMultyProperty'](data, ['x', 'y'], 60)).to.deep.equal({
+        expect(ExStat['percentileWithProperties'](data, ['x', 'y'], 60)).to.deep.equal({
             x: 0,
             y: 0
         });
-        expect(ExStat['percentileWithMultyProperty'](data, ['x', 'y'], 65)).to.deep.equal({
+        expect(ExStat['percentileWithProperties'](data, ['x', 'y'], 65)).to.deep.equal({
             x: 0,
             y: 0
         });

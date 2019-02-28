@@ -1,3 +1,5 @@
+import { ExMath } from './ExMath';
+
 export * from './Point';
 export * from './Set';
 export * from './ExMath';
@@ -5,6 +7,9 @@ export * from './ExStat';
 export * from './ExNume';
 export * from './Matrix';
 export * from './Vector';
+
+const result = ExMath.sigma([1, 2, 3, 4]);
+const resultObj = ExMath.sigma([{ x: 1 }, { x: 2 }, { x: 3 }], ['x']);
 
 /*const x: number[] = ExMath.linspace(1, 100);
 const y: number[] = [];
