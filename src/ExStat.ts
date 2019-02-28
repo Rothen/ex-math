@@ -1,3 +1,5 @@
+import { ExMath } from './ExMath';
+
 export abstract class ExStat {
     public static median(medianData: number[]): number;
     public static median<T, K extends Extract<keyof T, string>>(medianData: T[], propertyOrProperties?: K): number | object;
@@ -64,10 +66,12 @@ export abstract class ExStat {
         const index = (n * q / 100) - 1;
         let percentile = 0;
 
-        if (index % 1 === 0) {
-            percentile = (percentileData[index] + percentileData[index + 1]) / 2;
-        } else {
-            percentile = percentileData[Math.ceil(index)];
+        if (n > 0) {
+            if (index % 1 === 0) {
+                percentile = (percentileData[index] + percentileData[index + 1]) / 2;
+            } else {
+                percentile = percentileData[Math.ceil(index)];
+            }
         }
 
         return percentile;
@@ -91,26 +95,23 @@ export abstract class ExStat {
     }
 
     // tslint:disable-next-line:max-line-length
-    private static percentileWithMultyProperty<T, K extends Extract<keyof T, string>>(percentileData: T[], properties: K[], q: number): object {
-        const n = percentileData.length;
-        const index = (n * q / 100) - 1;
-        let percentile = {};
+    private static percentileWithMultyProperty<T, K extends Extract<keyof T, string>>(percentileData: T[], properties: K[], percentile: number): object {
+        const result = {};
+        const dataCount = percentileData.length;
+        const index = (dataCount * percentile / 100) - 1;
 
-        if (n > 0) {
-            for (const property of properties) {
-                const propertyName: string = property;
-                percentile[propertyName] = 0;
+        for (const property of properties as string[]) {
+            result[property] = 0;
 
-                if (n > 0) {
-                    if (index % 1 === 0) {
-                        percentile[propertyName] = (percentileData[index][propertyName] + percentileData[index + 1][propertyName]) / 2;
-                    } else {
-                        percentile[propertyName] = percentileData[Math.ceil(index)][propertyName];
-                    }
+            if (dataCount > 0) {
+                if (ExMath.isInN0(index)) {
+                    result[property] = (percentileData[index][property] + percentileData[index + 1][property]) / 2;
+                } else {
+                    result[property] = percentileData[Math.ceil(index)][property];
                 }
             }
         }
 
-        return percentile;
+        return result;
     }
 }

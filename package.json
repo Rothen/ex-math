@@ -1,6 +1,6 @@
 {
   "name": "@alkocats/ex-math",
-  "version": "0.3.8",
+  "version": "0.0.4",
   "description": "ex-math",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -36,8 +36,9 @@
     "cover": "nyc  -r lcov -e .ts -x \"*.spec.ts\" mocha --require ts-node/register spec/**/*.spec.ts"
   },
   "keywords": [
-    "config",
-    "factory"
+    "alkocats",
+    "ex-math",
+    "math"
   ],
   "author": "Benjamin Ricchiuto",
   "license": "MIT",

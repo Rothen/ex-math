@@ -1,25 +1,3 @@
-export function multiply(m1: Matrix, m2: Matrix) {
-    if (m1.columns !== m2.rows) {
-        throw new Error(`Dimensions must agree`);
-    }
-
-    let result: number[][] = [];
-
-    for (let r = 0; r < m1.rows; ++r) {
-        result[r] = [];
-
-        for (let c = 0; c < m2.columns; ++c) {
-            result[r][c] = 0;
-
-            for (let i = 0; i < m1.columns; ++i) {
-                result[r][c] += m1.data[r][i] * m2.data[i][c];
-            }
-        }
-    }
-
-    return new Matrix(result);
-}
-
 export class Matrix {
     public data: number[][];
     public columns: number;
@@ -43,6 +21,12 @@ export class Matrix {
         }
 
         this.data = result;
+        this.columns = this.rows;
+        this.rows = this.columns;
+    }
+
+    public toString() {
+        return this.data.toString();
     }
 
     public getCell(column: number, row: number) {
@@ -84,4 +68,26 @@ export class Matrix {
 
         return new Matrix(result);
     }
+}
+
+export function multiply(matrixA: Matrix, matrixB: Matrix) {
+    if (matrixA.columns !== matrixB.rows) {
+        throw new Error(`Dimensions must agree`);
+    }
+
+    const result: number[][] = [];
+
+    for (let rowIndex = 0; rowIndex < matrixA.rows; ++rowIndex) {
+        result[rowIndex] = [];
+
+        for (let columnIndex = 0; columnIndex < matrixB.columns; ++columnIndex) {
+            result[rowIndex][columnIndex] = 0;
+
+            for (let index = 0; index < matrixA.columns; ++index) {
+                result[rowIndex][columnIndex] += matrixA.data[rowIndex][index] * matrixB.data[index][columnIndex];
+            }
+        }
+    }
+
+    return new Matrix(result);
 }

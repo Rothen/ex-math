@@ -230,4 +230,28 @@ describe('ExStat', () => {
             y: 17
         });
     });
+
+    it('should calculate percentile without property with an empty dataSet correctly', () => {
+        const data = [];
+        expect(ExStat['percentileWithoutProperty'](data, 60)).to.equal(0);
+        expect(ExStat['percentileWithoutProperty'](data, 65)).to.equal(0);
+    });
+
+    it('should calculate percentile with property with an empty dataSet correctly', () => {
+        const data = [];
+        expect(ExStat['percentileWithProperty'](data, 'x', 60)).to.equal(0);
+        expect(ExStat['percentileWithProperty'](data, 'x', 65)).to.equal(0);
+    });
+
+    it('should calculate percentile with properties with an empty dataSet correctly', () => {
+        const data = [];
+        expect(ExStat['percentileWithMultyProperty'](data, ['x', 'y'], 60)).to.deep.equal({
+            x: 0,
+            y: 0
+        });
+        expect(ExStat['percentileWithMultyProperty'](data, ['x', 'y'], 65)).to.deep.equal({
+            x: 0,
+            y: 0
+        });
+    });
 });
