@@ -1,4 +1,5 @@
 import { ExMath } from './ExMath';
+import { ExStat } from './ExStat';
 
 export * from './Point';
 export * from './Set';
@@ -8,9 +9,28 @@ export * from './ExNume';
 export * from './Matrix';
 export * from './Vector';
 
-const result = ExMath.sigma([1, 2, 3, 4]);
+/*const result = ExMath.sigma([1, 2, 3, 4]);
 const resultObj = ExMath.sigma([{ x: 1 }, { x: 2 }, { x: 3 }], ['x']);
-const resultObj2 = ExMath.sigma([{ x: 1, y: 5 }, { x: 2 }, { x: 3 }], ['x']);
+const resultObj2 = ExMath.sigma([{ x: 1, y: 5 }, { x: 2 }, { x: 3 }], ['x']);*/
+
+const result = ExStat.linreg([{
+    x: 1,
+    y: 1
+}, {
+    x: 2,
+    y: 2
+}, {
+    x: 3,
+    y: 1.3
+}, {
+    x: 4,
+    y: 3.75
+}, {
+    x: 5,
+    y: 2.25
+}]);
+
+console.log(result);
 
 /*const x: number[] = ExMath.linspace(1, 100);
 const y: number[] = [];
