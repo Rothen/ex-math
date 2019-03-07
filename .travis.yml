@@ -16,5 +16,6 @@ deploy:
   provider: npm
   email: "alkocats.info@gmail.com"
   api_key: $NPM_AUTH_TOKEN
+  skip_cleanup: true
   on:
     tags: true
