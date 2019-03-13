@@ -88,7 +88,6 @@ export abstract class ExNume {
             y[i + 1] = y[i] + h * fn(xHHalf, yHHalf);
         }
 
-        console.log(x[x.length - 1]);
         return y;
     }
 
