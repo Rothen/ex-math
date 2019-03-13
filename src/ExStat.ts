@@ -1,4 +1,5 @@
 import { ExMath } from './ExMath';
+import { Point } from './Point';
 
 export abstract class ExStat {
     public static median(medianData: number[]): number;
@@ -51,6 +52,37 @@ export abstract class ExStat {
         } else {
             return this.percentileWithoutProperty(percentileData as number[], propertiesOrQ);
         }
+    }
+
+    public static linreg(data: Point[]): { a: number, b: number } {
+        const mean = ExMath.average(data, ['x', 'y']);
+
+        let sumSX = 0;
+        let sumSY = 0;
+
+        for (let i = 0; i < data.length; i++) {
+            sumSX += Math.pow((data[i].x - mean.x), 2);
+            sumSY += Math.pow((data[i].y - mean.y), 2);
+        }
+
+        const sX = Math.sqrt(sumSX / 4);
+        const sY = Math.sqrt(sumSY / 4);
+
+        let sum = 0;
+
+        for (let i = 0; i < data.length; i++) {
+            sum += ((data[i].x - mean.x) / sX) * ((data[i].y - mean.y) / sY);
+        }
+
+        sum /= data.length - 1;
+
+        const a = sum * (sY / sX);
+        const b = mean.y - a * mean.x;
+
+        return {
+            a: a,
+            b: b
+        };
     }
 
     private static percentileWithoutProperty(percentileData: number[], q: number): number {
