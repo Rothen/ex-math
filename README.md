@@ -7,4 +7,4 @@
 [![MIT License](https://img.shields.io/github/license/Rothen/ex-math.svg)](https://github.com/Rothen/ex-math/blob/master/LICENSE)
 [![Known Vulnerabilities](https://snyk.io/test/github/Rothen/ex-math/badge.svg)](https://snyk.io/test/github/Rothen/ex-math)
 [![dependencies Status](https://david-dm.org/Rothen/ex-math/status.svg)](https://david-dm.org/Rothen/ex-math)
-[![devDependencies Status](https://david-dm.org/Rothen/ex-math/dev-status.svg)](https://david-dm.org/Rothen/ex-math?type=dev)
+[![devDependencies Status](https://david-dm.org/Rothen/ex-math/dev-status.svg)](https://david-dm.org/Rothen/ex-math?type=dev) [![Greenkeeper badge](https://badges.greenkeeper.io/Rothen/ex-math.svg)](https://greenkeeper.io/)
